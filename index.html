@@ -1,11 +1,41 @@
-<b>Este ejemplo es de gh-pages</b> <br>
+<!doctype html>
+<meta charset="utf-8">
 
-<a href="https://fsitios.github.io/"> Sitio Original </a> <br>
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js"></script>
 
-<a href="https://fsitios.github.io/treemap.html"> Words Tree Map </a> <br>
+<div id="viz"></div>
 
-<a href="https://fsitios.github.io/wordcount.html"> Words Count </a> <br>
+<script>
+  var sample_data = [
+    {"day": "11-nov-2016", "name":"Words Count", "value": 15, "link": "https://fsitios.github.io/wordcount.html"},
+    {"day": "11-nov-2016", "name":"Words Tree Map", "value": 20, "link": "https://fsitios.github.io/treemap.html"},
+    {"day": "12-nov-2016", "name":"Demo Barras", "value": 60, "link": "https://fsitios.github.io/barras.html"},
+    {"day": "12-nov-2016", "name":"Demo Donut", "value": 40, "link": "https://fsitios.github.io/donutchart.html"},
+    {"day": "18-nov-2016", "name":"gamma", "value": 35, "link": "https://fsitios.github.io/"},
+    {"day": "18-nov-2016", "name":"alpha", "value": 35, "link": "https://fsitios.github.io/"},
+    {"day": "19-nov-2016", "name":"beta", "value": 40, "link": "https://fsitios.github.io/"},
+    {"day": "19-nov-2016", "name":"gamma", "value": 40, "link": "https://fsitios.github.io/"},
+    {"day": "25-nov-2016", "name":"alpha", "value": 40, "link": "https://fsitios.github.io/"},
+    {"day": "25-nov-2016", "name":"beta", "value": 40, "link": "https://fsitios.github.io/"},
+    {"day": "26-nov-2016", "name":"gamma", "value": 40, "link": "https://fsitios.github.io/"},
+    {"day": "26-nov-2016", "name":"alpha", "value": 40, "link": "https://fsitios.github.io/"}   
+  ]
+  var visualization = d3plus.viz()
+    .container("#viz")
+    .data(sample_data)
+    .type("tree_map")
+    .id("name")
+    .size("value")
+    .mouse({
+        "click": function(sample_data, viz) {
+          if (typeof sample_data.link != "undefined"){
+           // window.location.href = sample_data.link;  
+            console.log("clicked!" + sample_data.link);
+          }
+        }
+    })  
+    .time({"value": "day", "solo": "11-nov-2016"})
 
-<a href="https://fsitios.github.io/barras.html"> Demo Barras </a> <br>
-
-<a href="https://fsitios.github.io/donutchart.html"> Demo Donut </a> <br>
+    .draw()
+</script>
