@@ -1,0 +1,70 @@
+Table table;
+
+float maxx=-180,maxy=-90,minx=180,miny=90;
+  
+import java.util.Date;
+
+void setup() {
+  background(0);
+  
+  size(600, 400);
+  
+  table = loadTable("c:/tmp/l.csv", "header");
+  
+  stroke(50);
+
+  line(0,200,600,200);
+  line(300,0,300,400);
+  
+
+  
+ // println(table.getRowCount() + " total rows in table"); 
+
+  stroke(255);
+  
+  maximos();
+
+  for (TableRow row : table.rows()) {
+    
+
+    String ddate = row.getString("date");
+    
+    Date d = new Date(ddate);
+    
+    strokeWeight(d.getDay());  
+    float lat = row.getFloat("lat");
+    float lon = row.getFloat("lon");
+   
+    float x = map(lon, minx,maxx, 0, width);
+    float y = map(lat, miny, maxy, height, 0);
+/*
+    float x = map(lon, -180, 180, 0, width);
+    float y = map(lat, -90, 90, height, 0); 
+*/
+    point(x,y);
+    
+  //  println(x + " (" + y + ") has an ID of ");
+  }
+  
+}
+
+
+void maximos(){
+  
+  for (TableRow row : table.rows()) {
+    if(row.getFloat("lon") > maxx)
+      maxx = row.getFloat("lon");
+      
+    if(row.getFloat("lat") > maxy)
+      maxy = row.getFloat("lat");
+   
+    if(row.getFloat("lon") < minx)
+      minx = row.getFloat("lon");
+      
+    if(row.getFloat("lat") < miny)
+      miny = row.getFloat("lat");      
+      
+  }
+
+println(maxx + " " + minx + " --- " + maxy + " " + miny);
+}
