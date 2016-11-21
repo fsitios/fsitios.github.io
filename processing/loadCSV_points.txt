@@ -1,5 +1,4 @@
 Table table;
-
 float maxx=-180,maxy=-90,minx=180,miny=90;
   
 import java.util.Date;
