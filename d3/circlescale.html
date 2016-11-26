@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.js"></script>
+  
+
+</head>
+<body>
+  <script>
+    var r1 = 100;
+    var r2 = 50;
+
+    var r = d3.scaleSqrt().domain([0, 100]).range([0, 80]); 
+
+
+    var jsonCircles = [
+      { "x_axis": 150, "y_axis": 150, "radius": r(r2), "color" : "green" },
+       { "x_axis": 500, "y_axis": 150, "radius": r(r1), "color" : "purple"}];
+
+     var svgContainer = d3.select("body").append("svg")
+                                         .attr("width", 600)
+                                       .attr("height", 400);
+
+    var circles = svgContainer.selectAll("circle")
+                              .data(jsonCircles)
+                              .enter()
+                              .append("circle");
+
+    var circleAttributes = circles
+                          .attr("cx", function (d) { return d.x_axis; })
+                           .attr("cy", function (d) { return d.y_axis; })
+                           .attr("r", function (d) { return d.radius; })
+                           .style("fill", function(d) { return d.color; });
+
+  </script>
+</body>
+</html>
