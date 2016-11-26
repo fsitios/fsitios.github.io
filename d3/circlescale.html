@@ -10,15 +10,18 @@
 </head>
 <body>
   <script>
+    
+    
     var r1 = 100;
     var r2 = 50;
 
     var r = d3.scaleSqrt().domain([0, 100]).range([0, 80]); 
 
-
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+    
     var jsonCircles = [
-      { "x_axis": 150, "y_axis": 150, "radius": r(r2), "color" : "green" },
-       { "x_axis": 500, "y_axis": 150, "radius": r(r1), "color" : "purple"}];
+      { "x_axis": 150, "y_axis": 150, "radius": r(r2), "color" : color(r2) },
+       { "x_axis": 500, "y_axis": 150, "radius": r(r1), "color" : color(r1)}];
 
      var svgContainer = d3.select("body").append("svg")
                                          .attr("width", 600)
