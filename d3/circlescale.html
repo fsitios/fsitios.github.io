@@ -11,21 +11,29 @@
 <body>
   <script>
     
+    var w= 600;
+    var h = 500;
     
     var r1 = 100;
     var r2 = 50;
-
-    var r = d3.scaleSqrt().domain([0, 100]).range([0, 80]); 
+    var r3 = 2200;
+    
+    var x_axis1 = 150;
+    var x_axis2 = 500;    
+    var x_axis3 = x_axis1+x_axis2;  
+    
+    var r = d3.scaleSqrt().domain([0, 100]).range([0, 50]); 
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
     
     var jsonCircles = [
-      { "x_axis": 150, "y_axis": 150, "radius": r(r2), "color" : color(r2) },
-       { "x_axis": 500, "y_axis": 150, "radius": r(r1), "color" : color(r1)}];
+      { "x_axis": x_axis3/2, "y_axis": 250, "radius": r(r3), "color" : color(r3) },
+      { "x_axis": x_axis1, "y_axis": 250, "radius": r(r2), "color" : color(r2) },
+       { "x_axis": x_axis2, "y_axis": 250, "radius": r(r1), "color" : color(r1)}];
 
      var svgContainer = d3.select("body").append("svg")
-                                         .attr("width", 600)
-                                       .attr("height", 400);
+                                         .attr("width", w)
+                                       .attr("height", h);
 
     var circles = svgContainer.selectAll("circle")
                               .data(jsonCircles)
@@ -36,7 +44,8 @@
                           .attr("cx", function (d) { return d.x_axis; })
                            .attr("cy", function (d) { return d.y_axis; })
                            .attr("r", function (d) { return d.radius; })
-                           .style("fill", function(d) { return d.color; });
+                           .style("stroke", function(d) { return d.color; })
+                           .style("fill", "none");
 
   </script>
 </body>
