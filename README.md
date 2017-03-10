@@ -7,6 +7,7 @@ Este ejemplo es de gh-pages
 * _Words Count_ -  https://fsitios.github.io/wordcount.html
 * _Demo Barras_ -  https://fsitios.github.io/barras.html
 * _Demo Donut_ -  https://fsitios.github.io/donutchart.html
+* _B_ -  https://fsitios.github.io/B.html
 
 
 
